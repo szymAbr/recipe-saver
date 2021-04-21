@@ -89,7 +89,7 @@ function App() {
     <div className="container">
       {
         isLoading ?
-        <h3>Loading...</h3> :
+        <h3 className="col-3 loading">Loading...</h3> :
         user ?
         <div className="row">
           <Header handleLogout={handleLogout} />
