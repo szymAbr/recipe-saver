@@ -8,8 +8,6 @@ function RecipeCollection({ user }) {
 
     const isMounted = useRef(false);
     
-    
-
     useEffect(() => {
         const fetchData = () => {
             firebase

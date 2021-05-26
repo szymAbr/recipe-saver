@@ -2,28 +2,39 @@ import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
 import RecipeSteps from "./RecipeSteps";
 import RecipeIngredients from "./RecipeIngredients";
+import CategorySelector from "./CategorySelector";
 
 function RecipeEntryForm({ recipes, user }) {
     require ("firebase/storage");
     
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
+    const [userCategories, setUserCategories] = useState([]);
+    // default option for the category selector
+    const [category, setCategory] = useState("default-option");
     const [ingredients, setIngredients] = useState([]);
     const [ingredInput, setIngredInput] = useState("");
     const [steps, setSteps] = useState([]);
     const [stepInput, setStepInput] = useState("");
     const [recipeImg, setRecipeImg] = useState("");
+    const [defaultOption, setDefaultOption] = useState("");
     
     const titles = recipes.map(item => {
         return item.title;
     });
+
+    const savedCategories = recipes.map(item => {
+        return item.category;
+    })
+
+    const uniqueCategories = [...new Set(savedCategories)];
     
     function handleClick(e) {
         e.preventDefault();
 
         const time_minutes = parseInt(time);
 
-        if (title === "" || time === "" || ingredients.length === 0 || steps.length === 0) {
+        if (title === "" || time === "" || category === "default-option" || ingredients.length === 0 || steps.length === 0) {
             alert("Looks like you forgot about something!");
         } else {
             if (titles.includes(title)) {
@@ -35,6 +46,7 @@ function RecipeEntryForm({ recipes, user }) {
                     .add({
                         title,
                         time_minutes,
+                        category,
                         recipeImg,
                         ingredients,
                         steps
@@ -42,6 +54,7 @@ function RecipeEntryForm({ recipes, user }) {
                     .then(() => {
                         setTitle("");
                         setTime("");
+                        setCategory("default-option");
                         setRecipeImg("");
                         setIngredients([]);
                         setSteps([]);
@@ -62,6 +75,10 @@ function RecipeEntryForm({ recipes, user }) {
         })
     }
 
+    useEffect(() => {
+        setUserCategories(uniqueCategories);
+    }, [])
+    
     useEffect(() => {
         setIngredInput("");
     }, [ingredients])
@@ -86,7 +103,16 @@ function RecipeEntryForm({ recipes, user }) {
                 value={time}
                 onChange={e => (setTime(e.target.value))}
                 placeholder="Time needed [min]"
-                style={{ marginBottom: "20px" }}
+                // style={{ marginBottom: "20px" }}
+            />
+            <br />
+
+            <CategorySelector 
+                userCategories={userCategories}
+                setUserCategories={setUserCategories}
+                category={category}
+                setCategory={setCategory}
+                defaultOption={defaultOption}
             />
             <br />
             

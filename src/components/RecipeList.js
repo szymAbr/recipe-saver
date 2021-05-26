@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import firebase from "../firebase";
 import RecipeElement from "./RecipeElement";
 import RecipeEntryForm from "./RecipeEntryForm";
-import firebase from "../firebase";
+import RecipeCategories from "./RecipeCategories";
 
 function RecipeList({ recipes, user }) {
     const [chosen, setChosen] = useState("");
@@ -17,6 +18,9 @@ function RecipeList({ recipes, user }) {
         }
     }
     
+    // create a function which evaluates whether number of recipes > X
+    // OR the user has created > 1 group of recipes
+    // and if true return a list of grouped elements
     return (
         <div>
             {
@@ -24,9 +28,10 @@ function RecipeList({ recipes, user }) {
                 <h3 className="col-3 recipe-list" style={{ paddingTop: "13%" }}>You do not have any recipes yet :(</h3> :
                 <div className="col-3 recipe-list">
                     <h3>Your recipes:</h3><br />
+                    <RecipeCategories recipes={recipes} />
                     <ul>
                         {recipes.map(recipe => 
-                            <li key={recipe.id} className="list-item" onClick={() => {setChosen(recipe)}}>
+                            <li key={recipe.id} className="list-item" id={recipe.title} onClick={() => {setChosen(recipe)}}>
                                 <h4 className="recipe-title">{recipe.title}</h4>
                                 <p className="recipe-time">{recipe.time_minutes} min</p>
                                 <button className="delete-button" onClick={() => deleteRecipe(recipe)}>DELETE</button>
