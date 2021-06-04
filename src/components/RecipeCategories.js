@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-function RecipeCategories({ recipes }) {
+function RecipeCategories({ recipes, setCurrCat }) {    
     const allCategories = recipes.map(recipe => {
         return recipe.category;
     })
@@ -11,7 +11,7 @@ function RecipeCategories({ recipes }) {
         <div className="listed-categories">
             {uniqueCategories.map(cat => {
                 return (
-                    <button key={cat} id={cat}>{cat}</button>
+                    <button key={cat} className="cat-btn" id={cat} onClick={() => setCurrCat(cat)}>{cat}</button>
                 )
             })}
         </div>
