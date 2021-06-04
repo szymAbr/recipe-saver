@@ -3,12 +3,13 @@ import React, { useState } from "react";
 function CategorySelector({ userCategories, setUserCategories, category, setCategory }) {
     const [newCategory, setNewCategory] = useState("");
     
+    // selects category for this recipe
     function handleChange() {
         const categorySelector = document.getElementById("categories");
-
         setCategory(categorySelector.value);
     }
     
+    // updates category array
     function handleSubmit(e) {
         e.preventDefault();
         
@@ -21,7 +22,6 @@ function CategorySelector({ userCategories, setUserCategories, category, setCate
             setNewCategory("");
     }
     
-    // category selector - default option after saving a recipe
     return (
         <div className="select-category">
             <select id="categories" value={category} onChange={handleChange}>

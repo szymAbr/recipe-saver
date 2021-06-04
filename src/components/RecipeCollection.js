@@ -8,6 +8,7 @@ function RecipeCollection({ user }) {
 
     const isMounted = useRef(false);
     
+    // fetches current user's recipes from the database
     useEffect(() => {
         const fetchData = () => {
             firebase

@@ -20,6 +20,7 @@ function RecipeListElements({ recipes, user, setChosen }) {
         return recipes.category === currCat;
     }
 
+    // provides a new array of recipes, based on the selected category
     const singleCategory = recipes.filter(checkCategory);
     
     return (

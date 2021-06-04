@@ -16,7 +16,7 @@ function Login(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+
     hasAccount ?
     handleLogin() :
     handleSignup();

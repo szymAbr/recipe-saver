@@ -10,14 +10,12 @@ function RecipeEntryForm({ recipes, user }) {
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
     const [userCategories, setUserCategories] = useState([]);
-    // default option for the category selector
     const [category, setCategory] = useState("default-option");
     const [ingredients, setIngredients] = useState([]);
     const [ingredInput, setIngredInput] = useState("");
     const [steps, setSteps] = useState([]);
     const [stepInput, setStepInput] = useState("");
     const [recipeImg, setRecipeImg] = useState("");
-    const [defaultOption, setDefaultOption] = useState("");
     
     const titles = recipes.map(item => {
         return item.title;
@@ -29,6 +27,7 @@ function RecipeEntryForm({ recipes, user }) {
 
     const uniqueCategories = [...new Set(savedCategories)];
     
+    // uploads this recipe to the database
     function handleClick(e) {
         e.preventDefault();
 
@@ -63,6 +62,7 @@ function RecipeEntryForm({ recipes, user }) {
         }
     }
 
+    // uploads an image to the database
     function handleFile(e) {
         const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
@@ -112,7 +112,6 @@ function RecipeEntryForm({ recipes, user }) {
                 setUserCategories={setUserCategories}
                 category={category}
                 setCategory={setCategory}
-                defaultOption={defaultOption}
             />
             <br />
             
