@@ -11,15 +11,13 @@ function Login(props) {
     emailError,
     passwordError,
     handleLogin,
-    handleSignup
+    handleSignup,
   } = props;
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    hasAccount ?
-    handleLogin() :
-    handleSignup();
+    hasAccount ? handleLogin() : handleSignup();
   }
 
   return (
@@ -28,52 +26,66 @@ function Login(props) {
         <label className="login-label">
           Username (email address):
           <br />
-          <input 
-            type="email" 
+          <input
+            type="email"
             value={email}
             required
             autoFocus
             autoComplete="on"
-            onChange={e => (setEmail(e.target.value))}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        
+
         <p>{emailError}</p>
-        
+
         <label className="login-label">
           Password:
           <br />
-          <input 
+          <input
             type="password"
             value={password}
             required
             autoComplete="on"
-            onChange={e => (setPassword(e.target.value))}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        
+
         <p>{passwordError}</p>
 
         <div className="button-container">
-          {
-            hasAccount ?
+          {hasAccount ? (
             <div>
               <button>Sign in</button>
-              <p className="has-account">Don't have an account yet? 
-              <span className="sign-in-up" onClick={() => (setHasAccount(!hasAccount))}> Sign up</span>
-              </p>
-            </div> :
-            <div>
-              <button>Sign up</button>
-              <p className="has-account">Already have an account? 
-              <span className="sign-in-up" onClick={() => (setHasAccount(!hasAccount))}> Sign in</span>
+              <p className="has-account">
+                Don't have an account yet?
+                <span
+                  className="sign-in-up"
+                  onClick={() => setHasAccount(!hasAccount)}
+                >
+                  {" "}
+                  Sign up
+                </span>
               </p>
             </div>
-          }
+          ) : (
+            <div>
+              <button>Sign up</button>
+              <p className="has-account">
+                Already have an account?
+                <span
+                  className="sign-in-up"
+                  onClick={() => setHasAccount(!hasAccount)}
+                >
+                  {" "}
+                  Sign in
+                </span>
+              </p>
+            </div>
+          )}
         </div>
       </form>
     </div>
-  )
+  );
 }
 
 export default Login;

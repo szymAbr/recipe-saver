@@ -6,8 +6,8 @@ import RecipeCollection from "./components/RecipeCollection";
 import Login from "./components/Login";
 
 function App() {
-  require ("firebase/auth");
-  
+  require("firebase/auth");
+
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,18 +31,20 @@ function App() {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch(err => {
-        switch(err.code) {
-          case "auth/invalid-email" :
-          case "auth/user-disabled" :
-          case "auth/user-not-found" :
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
             setEmailError(err.message);
             break;
           case "auth/wrong-password":
             setPasswordError(err.message);
             break;
+          default:
+            console.log(err.code);
         }
-      })
+      });
   }
 
   function handleSignup() {
@@ -50,17 +52,19 @@ function App() {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(err => {
-        switch(err.code) {
-          case "auth/email-already-in-use" :
-          case "auth/invalid-email" :
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
             setEmailError(err.message);
             break;
           case "auth/weak-password":
             setPasswordError(err.message);
             break;
+          default:
+            console.log(err.code);
         }
-      })
+      });
   }
 
   function handleLogout() {
@@ -76,27 +80,27 @@ function App() {
         } else {
           setUser("");
         }
-      })
-    };
+      });
+    }
     authListener();
-  }, [])
+  }, []);
 
   useEffect(() => {
     setIsLoading(false);
-  }, [])
+  }, []);
 
   return (
     <div className="container">
-      {
-        isLoading ?
-        <h3 className="col-3 loading">Loading...</h3> :
-        user ?
+      {isLoading ? (
+        <h3 className="col-3 loading">Loading...</h3>
+      ) : user ? (
         <div className="row">
           <Header handleLogout={handleLogout} />
           <RecipeCollection user={user} />
-        </div> :
+        </div>
+      ) : (
         <div className="row">
-          <Login 
+          <Login
             email={email}
             setEmail={setEmail}
             password={password}
@@ -109,7 +113,7 @@ function App() {
             handleSignup={handleSignup}
           />
         </div>
-      }
+      )}
     </div>
   );
 }

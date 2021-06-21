@@ -4,15 +4,15 @@ import RecipeEntryForm from "./RecipeEntryForm";
 import RecipeListElements from "./RecipeListElements";
 
 function RecipeList({ recipes, user }) {
-    const [chosen, setChosen] = useState("");
+  const [chosen, setChosen] = useState("");
 
-    return (
-        <div>
-            <RecipeListElements recipes={recipes} user={user} setChosen={setChosen} />
-            <RecipeElement recipes={recipes} chosen={chosen} />
-            <RecipeEntryForm recipes={recipes} user={user} />
-        </div>
-    )
+  return (
+    <div>
+      <RecipeListElements recipes={recipes} user={user} setChosen={setChosen} />
+      <RecipeElement recipes={recipes} chosen={chosen} />
+      <RecipeEntryForm recipes={recipes} user={user} />
+    </div>
+  );
 }
 
 export default RecipeList;
