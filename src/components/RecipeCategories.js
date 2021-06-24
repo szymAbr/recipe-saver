@@ -7,8 +7,16 @@ function RecipeCategories({ recipes, setCurrCat }) {
 
   const uniqueCategories = [...new Set(allCategories)];
 
+  // set default category to show all recipes
+  function handleClick() {
+    setCurrCat("");
+  }
+
   return (
-    <div className="listed-categories">
+    <div style={{ marginBottom: "15px" }}>
+      <button className="cat-btn" onClick={handleClick}>
+        ALL RECIPES
+      </button>
       {uniqueCategories.map((cat) => {
         return (
           <button
