@@ -4,7 +4,7 @@ Web application allowing users to save their recipes (ingredients, steps, image)
 
 ## Project Status
 
-This project is currently in development. Users can access their recipes by choosing items from the list. Functionality to add list categories to be added.
+This project is currently in development. Users can access their recipes by choosing items from their list.
 
 ## Summary
 

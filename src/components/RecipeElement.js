@@ -6,6 +6,7 @@ function RecipeElement(props) {
 
   const chosen = props.chosen;
 
+  // default image (by Дарья Яковлева, from Pixabay) set if no file provided
   useEffect(() => {
     chosen.recipeImg
       ? setImgUrl(chosen.recipeImg)
