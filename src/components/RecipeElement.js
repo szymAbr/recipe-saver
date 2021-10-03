@@ -3,8 +3,12 @@ import firebase from "../firebase";
 
 function RecipeElement(props) {
   const [imgUrl, setImgUrl] = useState("");
-
+  const [imgStyle, setImgStyle] = useState({ paddingTop: "20rem" });
   const chosen = props.chosen;
+
+  function handleOnLoad() {
+    setImgStyle({ paddingTop: 0 });
+  }
 
   // default image (by Дарья Яковлева, from Pixabay) set if no file provided
   useEffect(() => {
@@ -27,7 +31,12 @@ function RecipeElement(props) {
       ) : (
         <div>
           <h2>{chosen.title}</h2>
-          <img src={imgUrl} alt="Ready meal" />
+          <img
+            src={imgUrl}
+            alt="Ready meal"
+            style={imgStyle}
+            onLoad={handleOnLoad}
+          />
           <p>Time: {chosen.time_minutes} min</p>
           <ul className="rec-elem-list">
             {chosen.ingredients.map((ingred) => (
