@@ -25,6 +25,7 @@ function RecipeSteps(props) {
           <input
             type="text"
             value={props.stepInput}
+            maxLength="200"
             onChange={(e) => props.setStepInput(e.target.value)}
             placeholder="next step"
           />

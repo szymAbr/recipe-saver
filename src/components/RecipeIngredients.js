@@ -27,6 +27,7 @@ function RecipeIngredients(props) {
           <input
             type="text"
             value={props.ingredInput}
+            maxLength="60"
             onChange={(e) => props.setIngredInput(e.target.value)}
             placeholder="next ingredient"
             className="ingr-input"

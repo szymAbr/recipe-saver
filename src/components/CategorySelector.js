@@ -43,6 +43,7 @@ function CategorySelector({
         <input
           type="text"
           value={newCategory}
+          maxLength="15"
           onChange={(e) => {
             setNewCategory(e.target.value);
           }}

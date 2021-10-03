@@ -91,7 +91,6 @@ function RecipeEntryForm({ recipes, user }) {
 
   useEffect(() => {
     setUserCategories(uniqueCategories);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -108,6 +107,7 @@ function RecipeEntryForm({ recipes, user }) {
       <input
         type="text"
         value={title}
+        maxLength="50"
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Title"
       />
@@ -116,9 +116,9 @@ function RecipeEntryForm({ recipes, user }) {
       <input
         type="number"
         value={time}
+        onInput={(e) => (e.target.value = e.target.value.slice(0, 5))}
         onChange={(e) => setTime(e.target.value)}
-        placeholder="Time needed [min]"
-        // style={{ marginBottom: "20px" }}
+        placeholder="Time [min]"
       />
       <br />
 
