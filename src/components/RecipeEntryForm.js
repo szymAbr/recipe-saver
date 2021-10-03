@@ -68,9 +68,17 @@ function RecipeEntryForm({ recipes, user }) {
     }
   }
 
-  // uploads an image to the database
+  // uploads an image to the database (if less than 5MB)
   function handleFile(e) {
     const file = e.target.files[0];
+    const fileSizeKB = file.size / 1024;
+
+    fileSizeKB <= 5120
+      ? uploadFile(file)
+      : alert("Please select a file smaller than 5MB.");
+  }
+
+  function uploadFile(file) {
     const storageRef = firebase.storage().ref();
     const fileRef = storageRef.child(`images of ${user.uid}/` + file.name);
     fileRef.put(file).then(() => {
