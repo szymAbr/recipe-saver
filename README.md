@@ -1,10 +1,8 @@
+# [Recipe Saver](https://recipe-saver.online/)
+
 ## Recipe Saver
 
-Web application allowing users to save their recipes (ingredients, steps, image) once authenticated. Built with React.
-
-## Project Status
-
-This project is currently in development. Users can access their recipes by choosing items from their list.
+Web application allowing users to save their recipes (ingredients, steps, image) once authenticated. The users can access their recipes by choosing items from their list. Built with React.
 
 ## Summary
 
